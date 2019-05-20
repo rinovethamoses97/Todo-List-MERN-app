@@ -68,11 +68,13 @@ class Todo extends Component{
         {
           this.state.todo.map((todo)=>{
             if(todo.status){
+              var postDate=new Date(todo.timeStamp);  
               return <div className="row" key={todo._id}>
                     <div className="col-sm-12">
                       <div className="alert alert-success">
                         {todo.content}
-                        <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span>
+                        <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span><br></br>
+                        <span style={{fontWeight:"bold",fontStyle:"oblique"}}>Posted on: {postDate.getDate()}-{postDate.getMonth()}-{postDate.getFullYear()}</span>
                       </div>
                     </div>
                   </div>
