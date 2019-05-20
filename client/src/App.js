@@ -82,7 +82,7 @@ class App extends Component{
                     <div className="col-sm-12">
                       <div className="alert alert-danger" style={{textDecoration:"line-through"}}>
                         {todo.content}
-                        <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span>
+                        {/* <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span> */}
                       </div>
                     </div>
                   </div>
