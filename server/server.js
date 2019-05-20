@@ -20,7 +20,6 @@ app.get('/',function(req,res){
     res.send("Hello");
 });
 app.post("/getContent",function(req,res){
-    console.log("Check");
     Post.find(function(err,posts){
         if(err){
             res.send({status:"error"});
@@ -41,7 +40,6 @@ app.post("/deleteContent",function(req,res){
     })
 })
 app.post('/addContent',function(req,res){
-    console.log(req.body.content);
     var post=new Post({
         content:req.body.content,
         timeStamp:new Date()
