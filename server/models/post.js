@@ -2,6 +2,9 @@ var mongoose=require("mongoose");
 var Schema=mongoose.Schema;
 var postSchema=new Schema(
     {
+        username:{
+            type:String,
+        },
         content:{
             type:String,
         },

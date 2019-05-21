@@ -16,11 +16,13 @@ mongoose.connection.on('error',function(err){
     }
 });
 var Post=require("./models/post");
+var User=require("./models/user");
 app.get('/',function(req,res){
     res.send("Hello");
 });
 app.post("/getContent",function(req,res){
-    Post.find(function(err,posts){
+    console.log(req.body.username);
+    Post.find({username:req.body.username},function(err,posts){
         if(err){
             res.send({status:"error"});
         }
@@ -28,6 +30,36 @@ app.post("/getContent",function(req,res){
             res.send({status:"success",data:posts});
         }
     });
+});
+// for development purpose function
+app.get('/addUser/:username/:password',function(req,res){
+    var newUser=new User({
+        username:req.params.username,
+        password:req.params.password,
+    });
+    newUser.save(function(err){
+        if(err){
+            console.log("error");
+        }
+        else{
+            console.log("User Added");
+        }
+    });
+})
+app.post('/login',function(req,res){
+    User.findOne({username:req.body.username,password:req.body.password},function(err,user){
+        if(err){
+            res.send({status:"error"});
+        }
+        else{
+            if(user){
+                res.send({status:"success",login:true,user:user});
+            }
+            else{
+                res.send({status:"success",login:false});
+            }
+        }
+    })
 });
 app.post("/deleteContent",function(req,res){
     Post.findByIdAndDelete({_id:req.body.id},function(err){
@@ -41,6 +73,7 @@ app.post("/deleteContent",function(req,res){
 })
 app.post('/addContent',function(req,res){
     var post=new Post({
+        username:req.body.username,
         content:req.body.content,
         timeStamp:new Date()
     });

@@ -7,8 +7,8 @@ class header extends Component{
     render(){
         return(
             <div>
-                <h1>Todo List</h1>
-                <a href="/about">About</a>
+                <h1>Todo List App</h1>
+                <a href="/about">About</a><br></br>
                 <a href="/login">Login</a>
             </div>
         );
