@@ -6,7 +6,10 @@ class header extends Component{
     }
     render(){
         return(
-            <h1>Todo List</h1>
+            <div>
+                <h1>Todo List</h1>
+                <a href="/about">About</a>
+            </div>
         );
     }
 }
