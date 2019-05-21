@@ -51,28 +51,30 @@ class Login extends Component{
                 <div className="container">
                     <form onSubmit={this.handleSubmit}>
                 {errorMessage}
-                <div className="form-element">
-                    <label>Username:</label>
+                <div className="form-group">
+                    <label for="username">Username:</label>
                     <input
                     id="username"
                     type="text"
+                    className="form-control"
                     required
                     value={this.state.username}
                     onChange={this.handleUsernameChange}
                     />
                 </div>
     
-                <div className="form-element">
-                    <label>Password:</label>
+                <div className="form-group">
+                    <label for="password">Password:</label>
                     <input
                     id="password"
+                    className="form-control"
                     type="password"
                     required
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
                     />
                 </div>
-                <input id="submit" type="submit" value="Submit" />
+                <input className="btn btn-primary" id="submit" type="submit" value="Submit" />
                 </form>
             </div>
             );
