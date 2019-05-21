@@ -9,6 +9,7 @@ class header extends Component{
             <div>
                 <h1>Todo List</h1>
                 <a href="/about">About</a>
+                <a href="/login">Login</a>
             </div>
         );
     }
