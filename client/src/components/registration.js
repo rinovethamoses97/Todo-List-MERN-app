@@ -23,7 +23,7 @@ class Registration extends Component{
         }
         else{
             this.setState({error:null});
-            axios.post("http://localhost:3001/addUser",{username:this.state.username,password:this.state.password}).then((response)=>{
+            axios.post("/addUser",{username:this.state.username,password:this.state.password}).then((response)=>{
                 if(response.data.status==="success"){
                     alert("User Registered");
                     this.setState({login:true});

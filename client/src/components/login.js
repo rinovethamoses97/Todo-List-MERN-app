@@ -20,7 +20,7 @@ class Login extends Component{
     handleSubmit=(event)=>{
         event.preventDefault();
         console.log(this.state);
-        axios.post("http://localhost:3001/login",{username:this.state.username,password:this.state.password}).then((response)=>{
+        axios.post("/login",{username:this.state.username,password:this.state.password}).then((response)=>{
             if(response.data.status==="success"){
                 if(response.data.login){
                     console.log("Login Success");

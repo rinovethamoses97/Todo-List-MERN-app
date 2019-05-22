@@ -12,7 +12,7 @@ class Todo extends Component{
   componentWillMount(){
      console.log("Getting the todolist from db");
      var self=this;
-     axios.post("http://localhost:3001/getContent",{username:this.state.username}).then((response)=>{
+     axios.post("/getContent",{username:this.state.username}).then((response)=>{
       if(response.data.status==="success"){
         var temp=response.data.data;
         console.log(temp);
@@ -29,7 +29,7 @@ class Todo extends Component{
   saveContent(){
     console.log(this.state.content);
     var self=this;
-    axios.post("http://localhost:3001/addContent",{username:this.state.username,content:this.state.content}).then(function(response){
+    axios.post("/addContent",{username:this.state.username,content:this.state.content}).then(function(response){
         if(response.data.status==="success"){
           alert("Todo added");
           var temp=self.state.todo;
@@ -53,7 +53,7 @@ class Todo extends Component{
   }
   deletePost=(event)=>{
     var targetId=event.target.id;
-    axios.post("http://localhost:3001/deleteContent",{id:event.target.id}).then((response)=>{
+    axios.post("/deleteContent",{id:event.target.id}).then((response)=>{
         if(response.data.status==="success"){
           console.log("Todo Deleted");
           var temp=this.state.todo;
