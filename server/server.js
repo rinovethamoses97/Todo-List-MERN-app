@@ -31,18 +31,17 @@ app.post("/getContent",function(req,res){
         }
     });
 });
-// for development purpose function
-app.get('/addUser/:username/:password',function(req,res){
+app.post('/addUser',function(req,res){
     var newUser=new User({
-        username:req.params.username,
-        password:req.params.password,
+        username:req.body.username,
+        password:req.body.password,
     });
     newUser.save(function(err){
         if(err){
-            console.log("error");
+            res.send({status:"error"})
         }
         else{
-            console.log("User Added");
+            res.send({status:"success"});
         }
     });
 })

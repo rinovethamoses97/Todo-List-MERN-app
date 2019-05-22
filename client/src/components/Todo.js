@@ -73,6 +73,11 @@ class Todo extends Component{
     if(this.state.login){
       return (
         <div>
+          <div className="row">
+            <div className="col-sm-12">
+              Welcome {this.state.username}
+            </div>
+          </div>
           {
             this.state.todo.map((todo)=>{
               if(todo.status){
