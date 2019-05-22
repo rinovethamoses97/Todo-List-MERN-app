@@ -5,7 +5,7 @@ var mongoose=require("mongoose");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.static(__dirname+"/public/build"));
+// app.use(express.static(__dirname+"/public/build"));
 // mongoose.connect('mongodb://localhost:27017/ToDo'); //for local db
 mongoose.connect('mongodb://rino:rino1234@ds159216.mlab.com:59216/todo')
 mongoose.connection.on('connected',function(){
@@ -18,9 +18,9 @@ mongoose.connection.on('error',function(err){
 });
 var Post=require("./models/post");
 var User=require("./models/user");
-app.get('*',function(req,res){
-    res.sendFile(__dirname+"/public/build/index.html");
-});
+// app.get('*',function(req,res){
+//     res.sendFile(__dirname+"/public/build/index.html");
+// });
 app.post("/getContent",function(req,res){
     console.log(req.body.username);
     Post.find({username:req.body.username},function(err,posts){
