@@ -16,6 +16,11 @@ class Registration extends Component{
     handlerePasswordChange=(event)=>{
         this.setState({repassword:event.target.value});
     }
+    componentWillMount=()=>{
+        if(cookie.load("username")!==undefined){
+            this.setState({login:true,username:cookie.load("username")});
+        }
+    }
     handleSubmit=(event)=>{
         event.preventDefault();
         console.log(this.state);
