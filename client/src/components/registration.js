@@ -31,9 +31,9 @@ class Registration extends Component{
             this.setState({error:null});
             axios.post("http://localhost:3001/addUser",{username:this.state.username,password:this.state.password}).then((response)=>{
                 if(response.data.status==="success"){
-                    alert("User Registered");
+                    alert("User Registered!! Login to continue");
                     this.setState({login:true});
-                    cookie.save("username",this.state.username,{path:"/"});
+                    // cookie.save("username",this.state.username,{path:"/"});
                 }
                 else{
                     console.log("Error");
@@ -44,7 +44,8 @@ class Registration extends Component{
     render(){
         var errorMessage=this.state.error?(<span style={{color:"red"}} className="error-message">{this.state.error}</span>):null;
         if(this.state.login){
-            return(<div className="container"><Todo username={this.state.username}/></div>);
+            window.location="/login";
+            // return(<div className="container"><Todo username={this.state.username}/></div>);
         }
         else{
             return(
