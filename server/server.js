@@ -32,6 +32,16 @@ app.post("/getContent",function(req,res){
         }
     });
 });
+app.post("/update",function(req,res){
+    Post.findByIdAndUpdate(req.body.id,{content:req.body.content},function(err){
+        if(err){
+            res.send({status:"error"});
+        }
+        else{
+            res.send({status:"success"});
+        }
+    })
+})
 app.post('/addUser',function(req,res){
     var newUser=new User({
         username:req.body.username,

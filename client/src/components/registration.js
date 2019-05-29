@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import Todo from "./Todo";
+// import Todo from "./Todo";
 import axios from "axios";
 import cookie from "react-cookies";
 class Registration extends Component{

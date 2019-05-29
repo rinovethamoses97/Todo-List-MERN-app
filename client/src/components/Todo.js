@@ -51,6 +51,18 @@ class Todo extends Component{
     this.setState({login:false});
     cookie.remove("username",{path:"/"});
   }
+  update=(event)=>{
+    var updatedContent=document.getElementById(event.target.id+"content").innerHTML;
+    var id=event.target.id;
+    axios.post("http://localhost:3001/update",{id:id,content:updatedContent}).then((response)=>{
+        if(response.data.status==="success"){
+          alert("Todo Updated");
+        }
+        else{
+          console.log("Error");
+        }
+    })
+  }
   deletePost=(event)=>{
     var targetId=event.target.id;
     axios.post("http://localhost:3001/deleteContent",{id:event.target.id}).then((response)=>{
@@ -85,9 +97,12 @@ class Todo extends Component{
                 return <div className="row" key={todo._id}>
                       <div className="col-sm-12">
                         <div className="alert alert-success">
-                          {todo.content}
+                          <div id={todo._id+"content"} contentEditable="true">
+                            {todo.content}
+                          </div>
                           <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span><br></br>
                           <span style={{fontWeight:"bold",fontStyle:"oblique"}}>Posted on: {postDate.getDate()}-{postDate.getMonth()}-{postDate.getFullYear()}</span>
+                          <span onClick={this.update} id={todo._id} style={{cursor:"pointer",float:"right"}}>Update</span>
                         </div>
                       </div>
                     </div>
