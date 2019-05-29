@@ -43,18 +43,30 @@ app.post("/update",function(req,res){
     })
 })
 app.post('/addUser',function(req,res){
-    var newUser=new User({
-        username:req.body.username,
-        password:req.body.password,
-    });
-    newUser.save(function(err){
-        if(err){
-            res.send({status:"error"})
+    User.findOne({username:req.body.username},function(err,user){
+        if(!err){
+            if(user){
+                res.send({status:"success",userAlreadyExist:true});
+            }
+            else{
+                var newUser=new User({
+                    username:req.body.username,
+                    password:req.body.password,
+                });
+                newUser.save(function(err){
+                    if(err){
+                        res.send({status:"error"});
+                    }
+                    else{
+                        res.send({status:"success",userAlreadyExist:false});
+                    }
+                });
+            }
         }
         else{
-            res.send({status:"success"});
+            res.send({status:"error"});
         }
-    });
+    })
 })
 app.post('/login',function(req,res){
     User.findOne({username:req.body.username,password:req.body.password},function(err,user){

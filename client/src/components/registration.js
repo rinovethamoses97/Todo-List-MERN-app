@@ -31,9 +31,14 @@ class Registration extends Component{
             this.setState({error:null});
             axios.post("http://localhost:3001/addUser",{username:this.state.username,password:this.state.password}).then((response)=>{
                 if(response.data.status==="success"){
-                    alert("User Registered!! Login to continue");
-                    this.setState({login:true});
-                    // cookie.save("username",this.state.username,{path:"/"});
+                    if(!response.data.userAlreadyExist){    
+                        alert("User Registered!! Login to continue");
+                        this.setState({login:true});
+                        // cookie.save("username",this.state.username,{path:"/"});
+                    }
+                    else{
+                        alert("User already Exist");
+                    }
                 }
                 else{
                     console.log("Error");
