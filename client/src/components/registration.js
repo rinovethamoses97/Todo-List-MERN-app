@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import Todo from "./Todo";
 import axios from "axios";
+import cookie from "react-cookies";
 class Registration extends Component{
     constructor(){
         super();
@@ -27,8 +28,7 @@ class Registration extends Component{
                 if(response.data.status==="success"){
                     alert("User Registered");
                     this.setState({login:true});
-                    localStorage.setItem("login","true");
-                    localStorage.setItem("username",this.state.username);
+                    cookie.save("username",this.state.username,{path:"/"});
                 }
                 else{
                     console.log("Error");

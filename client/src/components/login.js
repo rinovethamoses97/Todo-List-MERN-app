@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import axios from "axios";
 import Todo from "./Todo";
+import cookie from "react-cookies";
 class Login extends Component{
     constructor(){
         super();
@@ -13,8 +14,8 @@ class Login extends Component{
         this.setState({password:event.target.value});
     }
     componentWillMount=()=>{
-        if(localStorage.getItem("login")!=null && localStorage.getItem("login")==="true"){
-            this.setState({login:true,username:localStorage.getItem("username")});
+        if(cookie.load("username")!==undefined){
+            this.setState({login:true,username:cookie.load("username")});
         }
     }
     handleSubmit=(event)=>{
@@ -25,8 +26,7 @@ class Login extends Component{
                 if(response.data.login){
                     console.log("Login Success");
                     this.setState({error:null,login:true});
-                    localStorage.setItem("login","true");
-                    localStorage.setItem("username",this.state.username);
+                    cookie.save("username",this.state.username,{path:"/"});
                 }
                 else{
                     console.log("Login Failed");

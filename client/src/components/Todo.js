@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import axios from "axios";
 import Login from "./login";
+import cookie from 'react-cookies';
 class Todo extends Component{
   constructor(props){
     super();
@@ -47,9 +48,8 @@ class Todo extends Component{
     this.setState({content:event.target.value});
   }
   signout=()=>{
-    this.setState({login:false})
-    localStorage.setItem("login","false");
-    localStorage.setItem("username","");
+    this.setState({login:false});
+    cookie.remove("username",{path:"/"});
   }
   deletePost=(event)=>{
     var targetId=event.target.id;
