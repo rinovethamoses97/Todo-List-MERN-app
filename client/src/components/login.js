@@ -58,6 +58,7 @@ class Login extends Component{
                     type="text"
                     className="form-control"
                     required
+                    autoComplete="on"
                     value={this.state.username}
                     onChange={this.handleUsernameChange}
                     />
@@ -70,6 +71,7 @@ class Login extends Component{
                     className="form-control"
                     type="password"
                     required
+                    autoComplete="on"
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
                     />
