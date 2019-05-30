@@ -48,8 +48,10 @@ class Todo extends Component{
     this.setState({content:event.target.value});
   }
   signout=()=>{
-    this.setState({login:false});
-    cookie.remove("username",{path:"/"});
+    if(window.confirm("Are you Really want to signout")){
+      this.setState({login:false});
+      cookie.remove("username",{path:"/"});
+    }
   }
   update=(event)=>{
     var updatedContent=document.getElementById(event.target.id+"content").innerHTML;
@@ -86,8 +88,11 @@ class Todo extends Component{
       return (
         <div>
           <div className="row">
-            <div className="col-sm-12">
+            <div className="col-sm-11">
               Welcome {this.state.username}
+            </div>
+            <div className="col-sm-1">
+              <span style={{color:"blue",cursor:"pointer"}}  onClick={this.signout}>Signout</span>
             </div>
           </div>
           {
@@ -100,7 +105,7 @@ class Todo extends Component{
                           <div id={todo._id+"content"} contentEditable="true">
                             {todo.content}
                           </div>
-                          <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>X</span><br></br>
+                          <span id={todo._id} style={{float:'right',cursor:'pointer'}} onClick={this.deletePost}>Delete</span><br></br>
                           <span style={{fontWeight:"bold",fontStyle:"oblique"}}>Posted on: {postDate.getDate()}-{postDate.getMonth()}-{postDate.getFullYear()}</span>
                           <span onClick={this.update} id={todo._id} style={{cursor:"pointer",float:"right"}}>Update</span>
                         </div>
@@ -120,14 +125,11 @@ class Todo extends Component{
             })
           }
           <div className="row">
-            <div className="col-sm-8">
+            <div className="col-sm-11">
               <input type="text" className="form-control" value={this.state.content}  placeholder="Enter the ToDo" onChange={this.handleChange}></input>
             </div>
-            <div className="col-sm-2">
+            <div className="col-sm-1">
               <button className="btn btn-primary" onClick={this.saveContent}>Post</button>
-            </div>
-            <div className="col-sm-2">
-              <button className="btn btn-primary" onClick={this.signout}>Signout</button>
             </div>
           </div>
         </div>
